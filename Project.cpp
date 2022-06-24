@@ -7,7 +7,7 @@ using namespace std;
 #define TO_RADIANS 3.14/180.0
 
 //  Anggota Kelompok X
-//  Muhammad Faiq Adhitya Faqih(672020017)
+//  Muhammad Faiq Adhitya Faqih (672020017)
 //  Marcelinus Vito Otniel (672020192)
 //  Edwin Duta Ramadhan (672020272)
 //  Felisitas Yohania Renya T. Puli (672020284)
@@ -146,6 +146,7 @@ void interiorLantai1();
 void interiorLantai2();
 void interiorLantai3();
 void interiorLantai4();
+void eksteriorLantai0();
 void eksteriorLantai1();
 void eksteriorLantai2();
 void eksteriorLantai3();
@@ -181,57 +182,6 @@ void ground() {
     glEnd();
 }
 
-void interiorLantai2() {
-
-}
-void eksteriorLantai2() {
-    cetakPalangEkseteriorLantai2();
-    cetakbalokHorizontalLantai2();
-    cetakJendelaFullSedihEksteriorLantai2();
-    cetakPintuKuil(2);
-    cetakAtapSeiganToJiLantai2();
-    cetakBalokVertikal(2);
-    tampilPagarKayu();
-    cetakPenyanggaAtap(2);
-    cetakPintuLuar(2);
-    cetakPintuDalam(2);
-}
-void interiorLantai3() {
-
-}
-void eksteriorLantai3() {
-    cetakPalangEkseteriorLantai3();
-    cetakJendelaFullSempalEksteriorLantai3();
-    cetakbalokHorizontalLantai3();
-    cetakPintuKuil(3);
-    cetakAtapSeiganToJiLantai3();
-    cetakBalokVertikal(3);
-    cetakTerasLantai3();
-    pagarKayuTerasLantai3();
-    cetakUjungAtap(3);  
-    cetakPenyanggaAtap(3);
-    cetakPintuDalam(3);
-}
-void interiorLantai4() {
-
-}
-void eksteriorLantai4() {
-    cetakPalangEkseteriorLantai4();
-    cetakbalokHorizontalLantai4();
-    cetakJendelaFullSempalEksteriorLantai4();
-    cetakPintuKuil(4);
-    cetakKubahSeiganToJi();
-    cetakBalokVertikal(4);
-    cetakTerasLantai4();
-    pagarKayuTerasLantai4();
-    cetakUjungAtap(4);
-    cetakPinggiranAtap();
-    cetakAtapSeiganToJiLantai4();
-    cetakPenyanggaAtap(4);
-    cetakPintuDalam(4);
-    cetakpetir();
-}
-
 void draw() {
     /*Mulai tuliskan isi pikiranmu disini
     glPushMatrix();
@@ -241,6 +191,7 @@ void draw() {
     cetakPagar();
     cetakTangga();
     cetakPohon();
+    eksteriorLantai0();
     lantai(700,200,700,0.7,0.7,0.7);//y:Tinggi
     //===lantai 1===//
     glPushMatrix();
@@ -257,7 +208,7 @@ void draw() {
     lantai2(337, 300, 337, 0.8, 0.8, 0.8);//tembokDalam
     lantai2(350, 340, 350, 0.9, 0.9, 0.9);//tembokLuar
     eksteriorLantai2();
-    //interiorLantai2();
+    interiorLantai2();
     glPopMatrix();
     //===lantai 2===//
     //===lantai 3===//
@@ -266,7 +217,7 @@ void draw() {
     lantai3(287, 300, 287, 0.8, 0.8, 0.8);//tembokDalam
     lantai3(300, 340, 300, 0.9, 0.9, 0.9);//tembokLuar
     eksteriorLantai3();
-    //interiorLantai3();
+    interiorLantai3();
     glPopMatrix();
     //===lantai 3===//
     //===lantai 4===//
@@ -275,10 +226,10 @@ void draw() {
     lantai4(237, 300, 237, 0.8, 0.8, 0.8);//tembokDalam
     lantai4(250, 340, 250, 0.9, 0.9, 0.9);//tembokLuar
     eksteriorLantai4();
-    //interiorLantai4();
+    interiorLantai4();
     glPopMatrix();
     //===lantai 4===//
-    cout << "X_GESER = " << x_geser << " Y_GESER = " << y_geser << " Z_GESER = " << z_geser << endl;
+    //cout << "X_GESER = " << x_geser << " Y_GESER = " << y_geser << " Z_GESER = " << z_geser << endl;
     ground();
     
     glFlush();
@@ -398,11 +349,13 @@ void keyboard(unsigned char key, int x, int y) {
         }
         
         break;
-    case '8':
-        y_geser += 0.5;
+    case 'Y':
+    case 'y':
+        y_geser = 0.12;
         break;
-    case '2':
-        y_geser -= 0.5;
+    case 'U':
+    case 'u':
+        y_geser = -0.12;
         break;
     case '9':
         z_geser -= 0.5;
@@ -781,14 +734,14 @@ void cetakPalangY(float x, float y, float z, float tinggi) {
     //Cetak Palang Pada Sumbu Y
     glPushMatrix();
     glTranslatef(x, y, z);
-    balok(20, tinggi, 10, 1, 0.5, 0);
+    balok(20, tinggi, 10, 1.0f, 0.21f, 0.0f);
     glPopMatrix();
 }
 void cetakPalangX(float x, float y, float z, float tinggi) {
     //Cetak Palang Pada Sumbu X
     glPushMatrix();
     glTranslatef(x, y, z);
-    balok(10, tinggi, 20, 1, 0.5, 0);
+    balok(10, tinggi, 20, 1.0f, 0.21f, 0.0f);
     glPopMatrix();
 }
 void cetakPintu(float x, float y, float z) {
@@ -809,64 +762,65 @@ void kotak(float x, float y, float red, float green, float blue) {
 }
 void cetakPalangEkseteriorLantai1() {
     //palangDepan
-    cetakPalangY(400, 0, 400,300); cetakPalangY(257, 0, 400, 300);
-    cetakPalangY(-400, 0, 400, 300); cetakPalangY(-257, 0, 400, 300);
+    cetakPalangY(401, 0, 401,300); cetakPalangY(257, 0, 400, 300);
+    cetakPalangY(-401, 0, 401, 300); cetakPalangY(-257, 0, 400, 300);
     cetakPalangY(115, 0, 400, 300); cetakPalangY(-115, 0, 400, 300);
     //palangBelakang
-    cetakPalangY(400, 0, -400, 300); cetakPalangY(250, 0, -400, 300);
-    cetakPalangY(-400, 0, -400, 300); cetakPalangY(-250, 0, -400, 300);
+    cetakPalangY(401, 0, -401, 300); cetakPalangY(250, 0, -400, 300);
+    cetakPalangY(-401, 0, -401, 300); cetakPalangY(-250, 0, -400, 300);
     cetakPalangY(100, 0, -400, 300); cetakPalangY(-100, 0, -400, 300);
     //palangKanan
-    cetakPalangX(400, 0, 400, 300); cetakPalangX(400, 0, 250, 300);
-    cetakPalangX(400, 0, -400, 300); cetakPalangX(400, 0, -250, 300);
+    cetakPalangX(401, 0, 401, 300); cetakPalangX(400, 0, 250, 300);
+    cetakPalangX(401, 0, -401, 300); cetakPalangX(400, 0, -250, 300);
     cetakPalangX(400, 0, 100, 300); cetakPalangX(400, 0, -100, 300);
     //palangKiri
-    cetakPalangX(-400, 0, 400, 300); cetakPalangX(-400, 0, 250, 300);
-    cetakPalangX(-400, 0, -400, 300); cetakPalangX(-400, 0, -250, 300);
+    cetakPalangX(-401, 0, 401, 300); cetakPalangX(-400, 0, 250, 300);
+    cetakPalangX(-401, 0, -401, 300); cetakPalangX(-400, 0, -250, 300);
     cetakPalangX(-400, 0, 100, 300); cetakPalangX(-400, 0, -100, 300);
 }
 void cetakPalangEkseteriorLantai2() {
     //palangDepan
-    cetakPalangY(350, 0, 350, 240); cetakPalangY(107, 0, 350, 240);
-    cetakPalangY(-350, 0, 350, 240); cetakPalangY(-107, 0, 350, 240);
+    cetakPalangY(351, 0, 351, 240); cetakPalangY(107, 0, 350, 240);
+    cetakPalangY(-351, 0, 351, 240); cetakPalangY(-107, 0, 350, 240);
     //palangBelakang
-    cetakPalangY(350, 0, -350, 240); cetakPalangY(90, 0, -350, 240);
-    cetakPalangY(-350, 0, -350, 240); cetakPalangY(-90, 0, -350, 240);
+    cetakPalangY(351, 0, -351, 240); cetakPalangY(90, 0, -350, 240);
+    cetakPalangY(-351, 0, -351, 240); cetakPalangY(-90, 0, -350, 240);
     //palangKanan
-    cetakPalangX(350, 0, 350, 240); cetakPalangX(350, 0, 90, 240);
-    cetakPalangX(350, 0, -350, 240); cetakPalangX(350, 0,-90, 240);
+    cetakPalangX(351, 0, 351, 240); cetakPalangX(350, 0, 90, 240);
+    cetakPalangX(351, 0, -351, 240); cetakPalangX(350, 0,-90, 240);
     //palangKiri
-    cetakPalangX(-350, 0, 350, 240); cetakPalangX(-350, 0, 90, 240);
-    cetakPalangX(-350, 0, -350, 240); cetakPalangX(-350, 0, -90, 240);
+    cetakPalangX(-351, 0, 351, 240); cetakPalangX(-350, 0, 90, 240);
+    cetakPalangX(-351, 0, -351, 240); cetakPalangX(-350, 0, -90, 240);
 }
 void cetakPalangEkseteriorLantai3() {
     //palangDepan
-    cetakPalangY(300, 0, 300, 240); cetakPalangY(100, 0, 300, 240);
-    cetakPalangY(-300, 0, 300,240); cetakPalangY(-100, 0, 300,240);
+    cetakPalangY(301, 0, 301, 240); cetakPalangY(100, 0, 300, 240);
+    cetakPalangY(-301, 0, 301,240); cetakPalangY(-100, 0, 300,240);
     //palangBelakang
-    cetakPalangY(300, 0, -300, 240); cetakPalangY(80, 0, -300, 240);
-    cetakPalangY(-300, 0, -300, 240); cetakPalangY(-80, 0, -300, 240);
+    cetakPalangY(301, 0, -301, 240); cetakPalangY(80, 0, -300, 240);
+    cetakPalangY(-301, 0, -301, 240); cetakPalangY(-80, 0, -300, 240);
     //palangKanan
-    cetakPalangX(300, 0, 300, 240); cetakPalangX(300, 0, 80, 240);
-    cetakPalangX(300, 0, -300, 240); cetakPalangX(300, 0, -80, 240);
+    cetakPalangX(301, 0, 301, 240); cetakPalangX(300, 0, 80, 240);
+    cetakPalangX(301, 0, -301, 240); cetakPalangX(300, 0, -80, 240);
     //palangKiri
-    cetakPalangX(-300, 0, 300, 240); cetakPalangX(-300, 0, 80, 240);
-    cetakPalangX(-300, 0, -300, 240); cetakPalangX(-300, 0, -80, 240);
+    cetakPalangX(-301, 0, 301, 240); cetakPalangX(-300, 0, 80, 240);
+    cetakPalangX(-301, 0, -301, 240); cetakPalangX(-300, 0, -80, 240);
 }
 void cetakPalangEkseteriorLantai4() {
     //palangDepan
-    cetakPalangY(250, 0, 250, 240); cetakPalangY(80, 0, 250, 240);
-    cetakPalangY(-250, 0, 250, 240); cetakPalangY(-80, 0, 250, 240);
+    cetakPalangY(251, 0, 251, 240); cetakPalangY(80, 0, 250, 240);
+    cetakPalangY(-251, 0, 251, 240); cetakPalangY(-80, 0, 250, 240);
     //palangBelakang
-    cetakPalangY(250, 0, -250, 240); cetakPalangY(80, 0, -250, 240);
-    cetakPalangY(-250, 0, -250, 240); cetakPalangY(-80, 0, -250, 240);
+    cetakPalangY(250, 0, -251, 240); cetakPalangY(80, 0, -250, 240);
+    cetakPalangY(-250, 0, -251, 240); cetakPalangY(-80, 0, -250, 240);
     //palangKanan
-    cetakPalangX(250, 0, 250, 240); cetakPalangX(250, 0, 80, 240);
-    cetakPalangX(250, 0, -250, 240); cetakPalangX(250, 0, -80, 240);
+    cetakPalangX(251, 0, 251, 240); cetakPalangX(250, 0, 80, 240);
+    cetakPalangX(251, 0, -251, 240); cetakPalangX(250, 0, -80, 240);
     //palangKiri
-    cetakPalangX(-250, 0, 250, 240); cetakPalangX(-250, 0, 80, 240);
-    cetakPalangX(-250, 0, -250, 240); cetakPalangX(-250, 0, -80, 240);
+    cetakPalangX(-251, 0, 251, 240); cetakPalangX(-250, 0, 80, 240);
+    cetakPalangX(-251, 0, -251, 240); cetakPalangX(-250, 0, -80, 240);
 }
+
 void cetakJendelaFullSenyumEksteriorLantai1() {
     //belakangCamera
     jendelaFullSenyum(136, 100, 401, 1); jendelaFullSenyum(278, 100, 401, 1);
@@ -919,21 +873,21 @@ void balokHorizontalLantai1(float x, float y, float z, int sejajarSumbuX) {
         //Sejajar sumbu X
         glPushMatrix();
         glTranslatef(x, y, z);
-        balok(150, 20, 5, 1, 0.6, 0.2);
+        balok(150, 20, 5, 0.97f, 0.64f, 0.0f);
         glPopMatrix();
     }
     else if (sejajarSumbuX == 1) {
         //Sejajar sumbu Z
         glPushMatrix();
         glTranslatef(x, y, z);
-        balok(5, 20, 150, 1, 0.6, 0.2);
+        balok(5, 20, 150, 0.97f, 0.64f, 0.0f);
         glPopMatrix();
     }
     else if (sejajarSumbuX == 2) {
         //Sejajar sumbu X Depan
         glPushMatrix();
         glTranslatef(x, y, z);
-        balok(140, 20, 5, 1, 0.6, 0.2);
+        balok(140, 20, 5, 0.97f, 0.64f, 0.0f);
         glPopMatrix();
     }
     else {
@@ -946,21 +900,21 @@ void balokHorizontalLantai2(float x, float y, float z, int sejajarSumbuX) {
         //Sejajar sumbu X
         glPushMatrix();
         glTranslatef(x, y, z);
-        balok(120, 20, 5, 1, 0.6, 0.2);
+        balok(120, 20, 5, 0.97f, 0.64f, 0.0f);
         glPopMatrix();
     }
     else if (sejajarSumbuX == 1) {
         //Sejajar sumbu Z
         glPushMatrix();
         glTranslatef(x, y, z);
-        balok(5, 20, 120, 1, 0.6, 0.2);
+        balok(5, 20, 120, 0.97f, 0.64f, 0.0f);
         glPopMatrix();
     }
     else if (sejajarSumbuX == 2) {
         //Sejajar sumbu X Depan
         glPushMatrix();
         glTranslatef(x, y, z);
-        balok(110, 20, 5, 1, 0.6, 0.2);
+        balok(110, 20, 5, 0.97f, 0.64f, 0.0f);
         glPopMatrix();
     }
     else {
@@ -973,21 +927,21 @@ void balokHorizontalLantai3(float x, float y, float z, int sejajarSumbuX) {
         //Sejajar sumbu X
         glPushMatrix();
         glTranslatef(x, y, z);
-        balok(100, 20, 5, 1, 0.6, 0.2);
+        balok(100, 20, 5, 0.97f, 0.64f, 0.0f);
         glPopMatrix();
     }
     else if (sejajarSumbuX == 1) {
         //Sejajar sumbu Z
         glPushMatrix();
         glTranslatef(x, y, z);
-        balok(5, 20, 100, 1, 0.6, 0.2);
+        balok(5, 20, 100, 0.97f, 0.64f, 0.0f);
         glPopMatrix();
     }
     else if (sejajarSumbuX == 2) {
         //Sejajar sumbu X Depan
         glPushMatrix();
         glTranslatef(x, y, z);
-        balok(90, 20, 5, 1, 0.6, 0.2);
+        balok(90, 20, 5, 0.97f, 0.64f, 0.0f);
         glPopMatrix();
     }
     else {
@@ -999,21 +953,21 @@ void balokHorizontalLantai4(float x, float y, float z, int sejajarSumbuX) {
         //Sejajar sumbu X
         glPushMatrix();
         glTranslatef(x, y, z);
-        balok(80, 20, 5, 1, 0.6, 0.2);
+        balok(80, 20, 5, 0.97f, 0.64f, 0.0f);
         glPopMatrix();
     }
     else if (sejajarSumbuX == 1) {
         //Sejajar sumbu Z
         glPushMatrix();
         glTranslatef(x, y, z);
-        balok(5, 20, 80, 1, 0.6, 0.2);
+        balok(5, 20, 80, 0.97f, 0.64f, 0.0f);
         glPopMatrix();
     }
     else if (sejajarSumbuX == 2) {
         //Sejajar sumbu X Depan
         glPushMatrix();
         glTranslatef(x, y, z);
-        balok(80, 20, 5, 1, 0.6, 0.2);
+        balok(80, 20, 5, 0.97f, 0.64f, 0.0f);
         glPopMatrix();
     }
     else {
@@ -1079,43 +1033,44 @@ void cetakbalokHorizontalLantai4() {
 }
 
 void catPetiMinecraft(bool petiBesar) {
+    float red = 0.97f, green = 0.56f, blue = 0.0f;
     if (petiBesar == true) {
         glPushMatrix();
         //catKuningBawah
         glTranslatef(0, 4, 0);
-        sisiAtasCamera(76, 76, 36, 1, 0.6, 0.2);
-        sisiKananCamera(81, 48, 36, 1, 0.6, 0.2);
-        sisiDepanCamera(76, 48, 41, 1, 0.6, 0.2);
-        sisiKiriCamera(81, 48, 36, 1, 0.6, 0.2);
-        sisiBelakangCamera(76, 48, 41, 1, 0.6, 0.2);
+        sisiAtasCamera(76, 76, 36, red, green, blue);
+        sisiKananCamera(81, 48, 36, red, green, blue);
+        sisiDepanCamera(76, 48, 41, red, green, blue);
+        sisiKiriCamera(81, 48, 36, red, green, blue);
+        sisiBelakangCamera(76, 48, 41, red, green, blue);
         glPopMatrix();
 
         glPushMatrix();
         //catKuningAtas
         glTranslatef(0, 56, 0);
-        sisiKananCamera(81, 20, 36, 1, 0.6, 0.2);
-        sisiDepanCamera(76, 20, 41, 1, 0.6, 0.2);
-        sisiKiriCamera(81, 20, 36, 1, 0.6, 0.2);
-        sisiBelakangCamera(76, 20, 41, 1, 0.6, 0.2);
+        sisiKananCamera(81, 20, 36, red, green, blue);
+        sisiDepanCamera(76, 20, 41, red, green, blue);
+        sisiKiriCamera(81, 20, 36, red, green, blue);
+        sisiBelakangCamera(76, 20, 41, red, green, blue);
         glPopMatrix();
     }
     else {
         glPushMatrix();
         //catKuningBawah
         glTranslatef(0, 4, 0);
-        sisiAtasCamera(36, 76, 36, 1, 0.6, 0.2);
-        sisiKananCamera(41, 48, 36, 1, 0.6, 0.2);
-        sisiDepanCamera(36, 48, 41, 1, 0.6, 0.2);
-        sisiKiriCamera(41, 48, 36, 1, 0.6, 0.2);
-        sisiBelakangCamera(36, 48, 41, 1, 0.6, 0.2);
+        sisiAtasCamera(36, 76, 36, red, green, blue);
+        sisiKananCamera(41, 48, 36, red, green, blue);
+        sisiDepanCamera(36, 48, 41, red, green, blue);
+        sisiKiriCamera(41, 48, 36, red, green, blue);
+        sisiBelakangCamera(36, 48, 41, red, green, blue);
         glPopMatrix();
         glPushMatrix();
         //catKuningAtas
         glTranslatef(0, 56, 0);
-        sisiKananCamera(41, 20, 36, 1, 0.6, 0.2);
-        sisiDepanCamera(36, 20, 41, 1, 0.6, 0.2);
-        sisiKiriCamera(41, 20, 36, 1, 0.6, 0.2);
-        sisiBelakangCamera(36, 20, 41, 1, 0.6, 0.2);
+        sisiKananCamera(41, 20, 36, red, green, blue);
+        sisiDepanCamera(36, 20, 41, red, green, blue);
+        sisiKiriCamera(41, 20, 36, red, green, blue);
+        sisiBelakangCamera(36, 20, 41, red, green, blue);
         glPopMatrix();
     }
 }
@@ -1556,13 +1511,93 @@ void eksteriorLantai1() {
     //cetakPintu(-100, 0, 475);//pintuDepanKiri
     cetakJendelaFullSenyumEksteriorLantai1();
     cetakbalokHorizontalLantai1();
-    potDanBambu(-620, -200, 760, 8);
-    potDanBambu(620, -200, 760, 8);
-    potDanBambu(560, -200, 760, 2);
-    potDanBambu(500, -200, 760, 3);
+    potDanBambu(-640, -200, 760, 10);
+    potDanBambu(-540, -200, 760, 8);
+    potDanBambu(-440, -200, 760, 6);
+    potDanBambu(640, -200, 760, 10);
+    potDanBambu(540, -200, 760, 8);
+    potDanBambu(440, -200, 760, 6);
     cetakPintuKuil(1);
     cetakBalokVertikal(1);
     cetakBalokPenyangga();
+}
+void interiorLantai2() {
+    petiMinecraft(0, 0, -280, true, 2);
+    petiMinecraft(200, 0, -280, false, 4);
+    petiMinecraft(-200, 0, -280, false, 4);
+}
+void eksteriorLantai2() {
+    cetakPalangEkseteriorLantai2();
+    cetakbalokHorizontalLantai2();
+    cetakJendelaFullSedihEksteriorLantai2();
+    cetakPintuKuil(2);
+    cetakAtapSeiganToJiLantai2();
+    cetakBalokVertikal(2);
+    tampilPagarKayu();
+    cetakPenyanggaAtap(2);
+    cetakPintuLuar(2);
+    cetakPintuDalam(2);
+}
+void interiorLantai3() {
+    petiMinecraft(0, 0, -250, true, 2);
+    petiMinecraft(200, 0, -250, false, 4);
+    petiMinecraft(-200, 0, -250, false, 4);
+}
+void eksteriorLantai3() {
+    cetakPalangEkseteriorLantai3();
+    cetakJendelaFullSempalEksteriorLantai3();
+    cetakbalokHorizontalLantai3();
+    cetakPintuKuil(3);
+    cetakAtapSeiganToJiLantai3();
+    cetakBalokVertikal(3);
+    cetakTerasLantai3();
+    pagarKayuTerasLantai3();
+    cetakUjungAtap(3);
+    cetakPenyanggaAtap(3);
+    cetakPintuDalam(3);
+}
+void interiorLantai4() {
+    petiMinecraft(0, 0, -230, true, 2);
+    petiMinecraft(200, 0, -230, false, 4);
+    petiMinecraft(-200, 0, -230, false, 4);
+}
+void eksteriorLantai4() {
+    cetakPalangEkseteriorLantai4();
+    cetakbalokHorizontalLantai4();
+    cetakJendelaFullSempalEksteriorLantai4();
+    cetakPintuKuil(4);
+    cetakKubahSeiganToJi();
+    cetakBalokVertikal(4);
+    cetakTerasLantai4();
+    pagarKayuTerasLantai4();
+    cetakUjungAtap(4);
+    cetakPinggiranAtap();
+    cetakAtapSeiganToJiLantai4();
+    cetakPenyanggaAtap(4);
+    cetakPintuDalam(4);
+    cetakpetir();
+}
+
+void potBambuLantai0() {
+    potDanBambu(-760, 0, 640, 10);
+    potDanBambu(-760, 0, 540, 8);
+    potDanBambu(-760, 0, 440, 6);
+    petiMinecraft(-760,0,340,false,3);
+    potDanBambu(-760, 0, -640, 10);
+    potDanBambu(-760, 0, -540, 8);
+    potDanBambu(-760, 0, -440, 6);
+    petiMinecraft(-760, 0, -340, false, 3);
+}
+void eksteriorLantai0(){
+    potBambuLantai0();
+    glPushMatrix();
+    glRotatef(90,0.0,-1.0,0.0);
+    potBambuLantai0();
+    glPopMatrix();
+    glPushMatrix();
+    glRotatef(180, 0.0, -1.0, 0.0);
+    potBambuLantai0();
+    glPopMatrix();
 }
 
 void atapSeiganToJi(float x,float tinggi,  float red, float green, float blue) {
@@ -1806,23 +1841,23 @@ void balokPenyangga(float x, float y, float z) {
     glPopMatrix();
 }
 void cetakBalokPenyangga() {
-    balokPenyangga(-115,290,550); balokPenyangga(115, 290, 550);//depan
-    balokPenyangga(-257, 290, 550); balokPenyangga(257, 290, 550);
-    balokPenyangga(-400, 290, 550); balokPenyangga(400, 290, 550);
+    balokPenyangga(-115, 292,550); balokPenyangga(115, 292, 550);//depan
+    balokPenyangga(-257, 292, 550); balokPenyangga(257, 292, 550);
+    balokPenyangga(-400, 292, 550); balokPenyangga(400, 292, 550);
     glPushMatrix();glRotatef(180,0.0,1.0,0.0);
-    balokPenyangga(-100, 290, 550); balokPenyangga(100, 290, 550);//belakang
-    balokPenyangga(-250, 290, 550); balokPenyangga(250, 290, 550);
-    balokPenyangga(-400, 290, 550); balokPenyangga(400, 290, 550);
+    balokPenyangga(-100, 292, 550); balokPenyangga(100, 292, 550);//belakang
+    balokPenyangga(-250, 292, 550); balokPenyangga(250, 292, 550);
+    balokPenyangga(-400, 292, 550); balokPenyangga(400, 292, 550);
     glPopMatrix();
     glPushMatrix();glRotatef(90, 0.0, 1.0, 0.0);
-    balokPenyangga(-100, 290, 550); balokPenyangga(100, 290, 550);//belakang
-    balokPenyangga(-250, 290, 550); balokPenyangga(250, 290, 550);
-    balokPenyangga(-400, 290, 550); balokPenyangga(400, 290, 550);
+    balokPenyangga(-100, 292, 550); balokPenyangga(100, 292, 550);//belakang
+    balokPenyangga(-250, 292, 550); balokPenyangga(250, 292, 550);
+    balokPenyangga(-400, 292, 550); balokPenyangga(400, 292, 550);
     glPopMatrix();
     glPushMatrix();glRotatef(90, 0.0, -1.0, 0.0);
-    balokPenyangga(-100, 290, 550); balokPenyangga(100, 290, 550);//belakang
-    balokPenyangga(-250, 290, 550); balokPenyangga(250, 290, 550);
-    balokPenyangga(-400, 290, 550); balokPenyangga(400, 290, 550);
+    balokPenyangga(-100, 292, 550); balokPenyangga(100, 292, 550);//belakang
+    balokPenyangga(-250, 292, 550); balokPenyangga(250, 292, 550);
+    balokPenyangga(-400, 292, 550); balokPenyangga(400, 292, 550);
     glPopMatrix();
 }
 void pagarKayu(float x, float y, float z, float panjang) {
@@ -1952,21 +1987,21 @@ void pagarKayuTerasLantai4() {
 void algoritmaPenyanggaAtap(float x, float y, float z) {
     glPushMatrix();
     glTranslatef(x, y, z);
-    balok(15, 75, 15, 0.6, 0.3, 0);
+    balok(15, 75, 15, 0.55f, 0.27f, 0.07f);
     glPushMatrix();glTranslatef(0, 0, 20);
-    balok(15, 15, 15, 0.6, 0.3, 0);
+    balok(15, 15, 15, 0.55f, 0.27f, 0.07f);
     glPopMatrix();
     glPushMatrix(); glTranslatef(0, 13, 40);
-    balok(15, 15, 15, 0.6, 0.3, 0);
+    balok(15, 15, 15, 0.55f, 0.27f, 0.07f);
     glPopMatrix();
     glPushMatrix(); glTranslatef(0, 26, 60);
-    balok(15, 15, 15, 0.6, 0.3, 0);
+    balok(15, 15, 15, 0.55f, 0.27f, 0.07f);
     glPopMatrix();
     glPushMatrix(); glTranslatef(0, 39, 80);
-    balok(15, 15, 15, 0.6, 0.3, 0);
+    balok(15, 15, 15, 0.55f, 0.27f, 0.07f);
     glPopMatrix();
     glPushMatrix(); glTranslatef(0, 52, 40);
-    balok(15, 15, 50, 0.6, 0.3, 0);
+    balok(15, 15, 50, 0.55f, 0.27f, 0.07f);
     glPopMatrix();
 
     glPopMatrix();
@@ -2085,23 +2120,11 @@ void tiangPagar(float x, float z, float red, float green, float blue) {
     glTranslatef(x, 307.0, z);
     glutSolidSphere(10.0, 64, 64);
     glPopMatrix();
-    /*
-    if (lampu == false)
-    {
-        glPushMatrix();
-        glColor3f(0.8, 0.8, 0.8);
-        glTranslatef(x, 307.0, z);
-        glutSolidSphere(10.0, 64, 64);
-        glPopMatrix();
-    }
-    else {
-        glPushMatrix();
-        glColor3f(0.8, 0.8, 0.8);
-        glTranslatef(x, 307.0, z);
-        glutSolidSphere(10.0, 64, 64);
-        glPopMatrix();
-    }
-    */
+    glPushMatrix();
+    glColor3f(1.0f, 1.0f, 0.25f);
+    glTranslatef(x, 307.0, z);
+    glutSolidSphere(9.91 + y_geser, 64, 64);
+    glPopMatrix();
 }
 void tiangDepan(float x) {
     tiangPagar(x, 691.0, 0.3, 0.3, 0.3);
@@ -2494,7 +2517,7 @@ void kerucut(float x, float y, float z, float red, float green, float blue) {
 void cetakpetir() {
     glPushMatrix();
     glTranslatef(0,100,0);
-    dasarTiang(0, 500, 0, 1.0f, 1.0f, 0.16f);
+    dasarTiang(0, 500, 0, 1.0f, 0.84f, 0.0f);
     tabung(8, 8, 400, 0, 500, 0, 0, 0, 0);
     kerucut(0, 900, 0, 0, 0, 0);
     tabung(20, 20, 15, 0, 550, 0, 1.0, 0.84, 0);
